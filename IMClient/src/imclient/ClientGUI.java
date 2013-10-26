@@ -29,6 +29,8 @@ public class ClientGUI extends JFrame implements ActionListener
         
         btnSend.addActionListener(this);
         tfInputBox.addActionListener(this);
+        
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     public void actionPerformed(ActionEvent ae)

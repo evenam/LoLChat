@@ -35,7 +35,10 @@ public class IMClient
     public IMClient(String ip, int port, boolean useGUI)
     {
         if (useGUI)
+        {
             gui = ClientGUI.getReference();
+            gui.registerOutlet(this);
+        }
         else
             gui = null;
         
