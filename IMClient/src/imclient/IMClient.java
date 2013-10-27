@@ -75,7 +75,17 @@ public class IMClient
         }
         else
         {
-            sendMessage(input);
+            boolean shouldSend = true;
+            // filter reserves stuff
+            try
+            {
+                if (input.toLowerCase().substring(0, 6).equals("/audio"))
+                    shouldSend = false;
+            }
+            catch (Exception e) {}
+            
+            if (shouldSend)
+                sendMessage(input);
         }
     }
     

@@ -6,11 +6,11 @@ import java.net.*;
 public class ChatRoom 
 {
     private ArrayList<ClientServiceThread> clients;
-    private ArrayList<String> history;
+    //private ArrayList<String> history;
     
     public ChatRoom()
     {
-        history = new ArrayList<String>();
+        //history = new ArrayList<String>();
         clients = new ArrayList<ClientServiceThread>();
         System.out.println("***START OF SESSION***");
     }
@@ -18,7 +18,7 @@ public class ChatRoom
     public void sendMessage(String username, String message)
     {
         System.out.println(username + ": " + message);
-        history.add(username + ": " + message);
+        //history.add(username + ": " + message);
         for (int i = 0; i < clients.size(); i ++)
         {
             clients.get(i).sendMessage(username + ": " + message);
@@ -42,12 +42,13 @@ public class ChatRoom
         System.out.println("***END OF SESSION***");
     }
 
+    // Implement printHistory better (using files and stuff
     public void printHistory()
     {
-        for (int i = 0; i < history.size(); i ++)
+        /*for (int i = 0; i < history.size(); i ++)
         {
             System.out.println(history.get(i));
-        }
+        }*/
     }
     
     public ArrayList<ClientServiceThread> getClients()
