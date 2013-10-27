@@ -11,7 +11,7 @@ public class IMClient
     
     public static void main(String[] args) 
     {
-        IMClient client = new IMClient("0.0.0.0", 1337, true);
+        IMClient client = new IMClient("0.0.0.0", 1337, true, true);
         /*
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
@@ -32,7 +32,7 @@ public class IMClient
         }*/
     }
     
-    public IMClient(String ip, int port, boolean useGUI)
+    public IMClient(String ip, int port, boolean useGUI, boolean useAudio)
     {
         if (useGUI)
         {
@@ -52,7 +52,7 @@ public class IMClient
             output("ERROR: cannot resolve host. ");
             System.exit(1);
         }
-        connection = new ConnectionThread(s, useGUI);
+        connection = new ConnectionThread(s, useGUI, useAudio);
         connection.start();
     }
 

@@ -21,7 +21,7 @@ public class AudioHandler
         
     }
     
-    public String convertBufferString(byte[] buffer)
+    private String convertBufferString(byte[] buffer)
     {
         String ret = "/audio ";
         
@@ -33,7 +33,7 @@ public class AudioHandler
         return ret;
     }
     
-    public byte[] convertBufferByteArray(String buffer)
+    private byte[] convertBufferByteArray(String buffer)
     {
         Scanner new_b = new Scanner(buffer.substring(7));
         new_b.useDelimiter("");

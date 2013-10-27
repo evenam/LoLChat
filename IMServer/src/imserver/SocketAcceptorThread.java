@@ -28,7 +28,7 @@ public class SocketAcceptorThread implements Runnable
             try
             {
                 Socket s = server.accept();;
-                chatroom.registerClient(s, generateUsername());//s.getInetAddress().getHostName());
+                chatroom.registerClient(s, generateUsername());
                 i ++;
             }
             catch (IOException ex)

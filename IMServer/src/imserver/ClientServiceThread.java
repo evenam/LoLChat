@@ -81,7 +81,21 @@ public class ClientServiceThread implements Runnable
                 }
                 else
                 {
-                    chatroom.sendMessage(username, input);
+                    try 
+                    {
+                        if (input.toLowerCase().substring(0, 6).equals("/audio"))
+                        {
+                            chatroom.sendMessage(input);
+                        }
+                        else
+                        {
+                            chatroom.sendMessage(username + ": " + input);
+                        }
+                    }
+                    catch (Exception ex) 
+                    {
+                        chatroom.sendMessage(username + ": " + input);
+                    }
                 }
             }
             else

@@ -15,13 +15,13 @@ public class ChatRoom
         System.out.println("***START OF SESSION***");
     }
     
-    public void sendMessage(String username, String message)
+    public void sendMessage(String message)
     {
-        System.out.println(username + ": " + message);
-        //history.add(username + ": " + message);
+        System.out.println(message);
+        //history.add(message);
         for (int i = 0; i < clients.size(); i ++)
         {
-            clients.get(i).sendMessage(username + ": " + message);
+            clients.get(i).sendMessage(message);
         }
     }
     

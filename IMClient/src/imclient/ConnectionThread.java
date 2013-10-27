@@ -12,7 +12,7 @@ public class ConnectionThread implements Runnable
     private Socket socket;
     private ClientGUI gui;
     
-    public ConnectionThread(Socket s, boolean useGUI)
+    public ConnectionThread(Socket s, boolean useGUI, boolean useAudio)
     {
         if (useGUI)
             gui = ClientGUI.getReference();

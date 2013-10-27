@@ -59,7 +59,7 @@ public class IMServer
 
     private void sendMessage(String msg) 
     {
-        chatroom.sendMessage("***SERVER***", msg);
+        chatroom.sendMessage("***SERVER***: " + msg);
     }
 
     private void printServerList()
