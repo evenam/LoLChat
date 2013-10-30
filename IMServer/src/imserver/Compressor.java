@@ -12,7 +12,7 @@ public class Compressor
         ByteArrayOutputStream out = new ByteArrayOutputStream(data.length);
         
         def.finish();
-        byte[] buffer= new byte[1024];
+        byte[] buffer = new byte[1024];
         while (!def.finished())
         {
             int count = def.deflate(buffer);
@@ -42,6 +42,26 @@ public class Compressor
         
         byte[] ret = out.toByteArray();
         
+        return ret;
+    }
+    
+    public static String byteArrayToString(byte[] array)
+    {
+        String ret = "";
+        for (int i = 0; i < array.length; i ++)
+        {
+            ret += (char)array[i];
+        }
+        return ret;
+    }
+    
+    public static byte[] stringToByteArray(String str)
+    {
+        byte[] ret = new byte[str.length()];
+        for (int i = 0; i < str.length(); i ++)
+        {
+            ret[i] = (byte)str.charAt(i);
+        }
         return ret;
     }
 }
