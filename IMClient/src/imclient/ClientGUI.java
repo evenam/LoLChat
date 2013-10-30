@@ -37,7 +37,7 @@ public class ClientGUI extends JFrame implements ActionListener
     {
         if (ae.getSource().equals(tfInputBox) || ae.getSource().equals(btnSend))
         {
-            out.clientInput(tfInputBox.getText());
+            out.clientInput(tfInputBox.getText(), 0);
             tfInputBox.setText("");
         }
     }

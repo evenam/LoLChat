@@ -66,26 +66,43 @@ public class IMClient
         connection.stop();
     }
     
-    public void clientInput(String input)
+    public void clientInput(String input, int type)
     {
-        if (input.toLowerCase().equals("/exit") || input.toLowerCase().equals("/disconnect"))
+        if (type == 1) // audio
         {
-            endSession();
-            System.exit(0);
-        }
-        else
-        {
-            boolean shouldSend = true;
-            // filter reserves stuff
             try
             {
-                if (input.toLowerCase().substring(0, 6).equals("/audio"))
-                    shouldSend = false;
+                sendMessage("/audio " + Compressor.byteArrayToString(Compressor.compress(Compressor.stringToByteArray(input))));
             }
-            catch (Exception e) {}
-            
-            if (shouldSend)
-                sendMessage(input);
+            catch (IOException e) {}
+        }
+        else // text input
+        {
+            if (input.toLowerCase().equals("/exit") || input.toLowerCase().equals("/disconnect"))
+            {
+                endSession();
+                System.exit(0);
+            }
+            else
+            {
+                boolean shouldSend = true;
+                // filter reserves stuff
+                try
+                {
+                    if (input.toLowerCase().substring(0, 6).equals("/audio"))
+                        shouldSend = false;
+                }
+                catch (Exception e) {}
+
+                if (shouldSend)
+                {
+                    try
+                    {
+                        sendMessage("/text " + Compressor.byteArrayToString(Compressor.compress(Compressor.stringToByteArray(input))));
+                    }
+                    catch (IOException e) {}
+                }
+            }
         }
     }
     
