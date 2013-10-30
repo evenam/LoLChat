@@ -108,9 +108,28 @@ public class IMClient
     
     private void output(String s)
     {
-        if (gui != null)
-            gui.sendOutput(s);
-        else
-            System.out.println(s);
+        try
+        {
+            if (s.substring(0, 5).equals("/text"))
+            {
+                if (gui != null)
+                    gui.sendOutput(Compressor.byteArrayToString(Compressor.decompress(Compressor.stringToByteArray(s.substring(6)))));
+                else
+                    System.out.println(s);
+            }
+        }
+        catch (Exception e) {}
+        try
+        {
+            if (s.substring(0, 6).equals("/audio"))
+            {
+                // no, play this out yo speakerzzz
+                if (gui != null)
+                    gui.sendOutput(Compressor.byteArrayToString(Compressor.decompress(Compressor.stringToByteArray(s.substring(7)))));
+                else
+                    System.out.println(s);
+            }
+        }
+        catch (Exception e) {}
     }
 }
