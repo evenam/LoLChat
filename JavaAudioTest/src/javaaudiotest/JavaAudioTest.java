@@ -13,8 +13,6 @@ import javax.sound.sampled.SourceDataLine;
 
 
 public class JavaAudioTest {
-  private int inLine;
-  private int outLine;
   private AudioFormat format;
   private Info[] lines;
   private TargetDataLine inputLine;
@@ -25,26 +23,18 @@ public class JavaAudioTest {
 
   public static void main(String[] args)
   {
-      JavaAudioTest test = new JavaAudioTest(4, 0);
+      JavaAudioTest test = new JavaAudioTest();
       test.printLineInfo();
       test.startListening();
   }
-  
-  public JavaAudioTest(int in, int out){
-    this.inLine = in;
-    this.outLine = out;
-    this.setup();
-  }
 
   public JavaAudioTest(){
-    this.inLine = 4;
-    this.outLine = 0;
     this.setup();
   }
 
   private void setup(){
     format = new AudioFormat(16000, 16, 2, true, true);
-    lines = AudioSystem.getMixerInfo();    
+    //lines = AudioSystem.getMixerInfo();    
     inInfo = new DataLine.Info(TargetDataLine.class, format);
     outInfo = new DataLine.Info(SourceDataLine.class, format);
     bufferSize = (int) format.getSampleRate();// * format.getFrameSize();
@@ -60,17 +50,16 @@ public class JavaAudioTest {
 
   public void startListening(){
     try{
-      inputLine = (TargetDataLine)AudioSystem.getMixer(lines[inLine]).getLine(inInfo);
+      inputLine = (TargetDataLine)AudioSystem.getLine(inInfo);
       inputLine.open(format, bufferSize);
       inputLine.start();
       
-      outputLine = (SourceDataLine)AudioSystem.getMixer(lines[outLine]).getLine(outInfo);
+      outputLine = (SourceDataLine)AudioSystem.getLine(outInfo);
       outputLine.open(format, bufferSize);
       outputLine.start();
       
       byte[] buffer = new byte[bufferSize];
 
-      System.out.println("Listening on line " +inLine+", " + lines[inLine].getName() + "...");
       boolean quit = false;
       
       while(!quit)
@@ -81,8 +70,9 @@ public class JavaAudioTest {
       
       inputLine.close();
       outputLine.close();
-    }catch (LineUnavailableException e){
-      System.out.println("Line " + inLine + " is unavailable.");
+    }
+    catch (LineUnavailableException e)
+    {
       e.printStackTrace();
       System.exit(1);
     }
