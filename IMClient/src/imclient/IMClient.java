@@ -11,8 +11,8 @@ public class IMClient
     
     public static void main(String[] args) 
     {
-        IMClient client = new IMClient("0.0.0.0", 1337, true, true);
-        /*
+        IMClient client = new IMClient("0.0.0.0", 1337, false, false);
+        
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
         String input = "";
@@ -29,7 +29,7 @@ public class IMClient
                 System.exit(1);
             }
             client.clientInput(input);
-        }*/
+        }
     }
     
     public IMClient(String ip, int port, boolean useGUI, boolean useAudio)
