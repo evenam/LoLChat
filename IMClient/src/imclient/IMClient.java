@@ -11,7 +11,7 @@ public class IMClient
     
     public static void main(String[] args) 
     {
-        IMClient client = new IMClient("0.0.0.0", 1337, false, false);
+        IMClient client = new IMClient("76.165.241.176", 1337, false, false);
         
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
@@ -28,7 +28,7 @@ public class IMClient
                 System.out.println("ERROR: unable to get input. ");
                 System.exit(1);
             }
-            client.clientInput(input);
+            client.clientInput(input, 0);
         }
     }
     
